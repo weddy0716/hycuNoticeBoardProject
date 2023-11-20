@@ -9,4 +9,5 @@ public class Member {
 	private String password;
 	private String email;
 	private String fullName;
+	private String passErrorCnt; //비밀번호오류횟수
 }

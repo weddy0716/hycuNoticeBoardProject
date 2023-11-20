@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sinho.hycu.boardNotice.repository.mapper.LoginMapper">
+	<insert id="loginFirstInsert" parameterType="LoginMgt" >
+		insert into LOGINMGT(
+			userid,
+		    password
+		) values (
+			#{userid},
+			#{password}
+		)
+	</insert>
+	
+	<!-- 로그인(ID체크)-->
+	<select id="loginCheckerId" parameterType="LoginMgt" resultType="LoginMgt">
+		select 
+			userid,
+			pass_error_cnt
+		FROM LOGINMGT
+		WHERE userid = #{userid}
+	</select>
+	
+	<!-- 로그인(ID/PW로그인) -->
+	<select id="loginCheckerIdPw" parameterType="LoginMgt" resultType="LoginMgt">
+		select 
+			userid
+		FROM LOGINMGT
+		WHERE userid = #{userid}
+		AND password = #{password}
+	</select>
+	
+	<!-- 로그인 정보 업데이트-->
+	<update id="updateLoginInfo" parameterType="LoginMgt">
+		UPDATE 
+			LOGINMGT
+		SET 
+			last_login_dt = now(),
+			pass_error_cnt = 0,
+			last_login_ip = #{lastLoginIp}
+		WHERE 
+			userid = #{userid}
+		AND password = #{password}
+	</update>
+	
+	<!-- 로그인 실패 정보 업데이트-->
+	<update id="updateFailLoginInfo" parameterType="LoginMgt">
+		UPDATE 
+			LOGINMGT
+		SET 
+			last_fail_login_dt = now(),
+			pass_error_cnt = #{passErrorCnt}
+		WHERE 
+			userid = #{userid}
+	</update>
+</mapper>

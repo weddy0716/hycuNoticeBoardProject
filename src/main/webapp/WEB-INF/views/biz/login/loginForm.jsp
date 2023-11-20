@@ -14,8 +14,8 @@
                                         <label for="id">로그인ID</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="pw" type="password" placeholder="Password" />
-                                        <label for="pw">Password</label>
+                                        <input class="form-control" id="password" type="password" placeholder="Password" />
+                                        <label for="password">Password</label>
                                     </div>
                                     <div class="form-check mb-3">
                                         <input class="form-check-input" id="rememberId" type="checkbox" value="" />
@@ -43,7 +43,38 @@
 <script type="text/javascript">
 	documentReady("#hycuBoardLogin" , function(dom){
 		$(dom).find("#login").bind("click",function(){
+			var userid		= $(dom).find("#userid").val(); // 아이디
+			var password	= $(dom).find("#password").val(); // 비밀번호
 			
+			if(userid == ""){
+				alert("사용자ID를 입력하여 주십시오.");
+				return;
+			}
+			if(password == ""){
+				alert("비밀번호를 입력하여 주십시오.");
+				return;
+			}
+			
+			var param = {};			
+			param.userid = userid;
+			param.password = password;
+			
+			ajaxAction(param, "text", "/login/userlogin.act", function(result){
+				if(result == "1") {
+					alert("로그인이완료되었습니다.");
+					document.location.href = "/";
+					$(dom).find("form")[0].reset();
+				} else {
+					alert(result);
+				}
+			},function(errorCode , errorMsg){
+				var customErrorObj = errorMsg.split("||");
+				if(customErrorObj[1] == "COMM_0001"){
+					alert(customErrorObj[0]);
+				}
+				
+				
+			});
 		});
 		
 		$(dom).find("#memberJoin").bind("click",function(){
@@ -52,7 +83,8 @@
 		});
 		
 		$(dom).find("#forgetPassword").bind("click",function(){
-	
+			
 		});
+		
 	});
 </script>

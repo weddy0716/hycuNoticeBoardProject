@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.sinho.hycu.boardNotice.repository.LoginRepository;
 import com.sinho.hycu.boardNotice.repository.MemberRepository;
+import com.sinho.hycu.boardNotice.repository.impl.MybatisMapperLoginRepository;
 import com.sinho.hycu.boardNotice.repository.impl.MybatisMapperMemberRepository;
+import com.sinho.hycu.boardNotice.repository.mapper.LoginMapper;
 import com.sinho.hycu.boardNotice.repository.mapper.MemberMapper;
+import com.sinho.hycu.boardNotice.service.LoginService;
 import com.sinho.hycu.boardNotice.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +32,9 @@ public class SpringConfig {
 	MemberMapper memberMapper;
 	
 	@Autowired
+	LoginMapper loginMapper;
+	
+	@Autowired
 	@Qualifier("mybatisDataSource")
 	DataSource dataSource;
 	
@@ -38,7 +45,13 @@ public class SpringConfig {
 	@Bean
 	public MemberService memberService() {
 		log.info("##SpringConfig memberService");
-		return new MemberService(memberRepository());
+		return new MemberService(memberRepository() , loginRepository());
+	}
+	
+	@Bean
+	public LoginService loginService() {
+		log.info("##SpringConfig LoginService");
+		return new LoginService(loginRepository());
 	}
 	
 	@Bean
@@ -50,5 +63,16 @@ public class SpringConfig {
 		//return new JPAMemberRepository(em);
 		//return new MybatisTemplateMemberRepository(sqlSession);
 		return new MybatisMapperMemberRepository(memberMapper);
+	}
+	
+	@Bean
+	public LoginRepository loginRepository() {
+		log.info("##SpringConfig memberRepository");
+		//return new MemoryMemberRepository();
+		//return new JDBCMemberRepository(studyDBSource);
+		//return new JDBCTemplateMemberRepository(studyDBSource);
+		//return new JPAMemberRepository(em);
+		//return new MybatisTemplateMemberRepository(sqlSession);
+		return new MybatisMapperLoginRepository(loginMapper);
 	}
 }

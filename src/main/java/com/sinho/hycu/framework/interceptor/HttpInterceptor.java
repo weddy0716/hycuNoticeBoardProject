@@ -39,7 +39,7 @@ public class HttpInterceptor implements HandlerInterceptor{
         }
          
         log.info("###PSH HttpInterceptor requestHeaderInfo X-FORWARDED-FOR : {} || getRemoteIP : {} || requestURL : {}", request.getHeader("X-FORWARDED-FOR") , request.getRemoteAddr() , request.getRequestURL());
-        log.debug("###PSH HttpInterceptor requestHeaderInfo size : {} || data : {} ", requestHeaderInfo.size() , requestHeaderInfo);
+        log.info("###PSH HttpInterceptor requestHeaderInfo size : {} || data : {} ", requestHeaderInfo.size() , requestHeaderInfo);
 		return true;
 	}
 

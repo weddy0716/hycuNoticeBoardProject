@@ -55,9 +55,9 @@
 			console.log("###PSH param : " + JSON.stringify(param));
 			
 			ajaxAction(param, "text", "/members/createMember.act", function(result){
-				if(result == "") {
+				if(result == "1") {
 					alert("회원 등록이 완료되었습니다.");
-					document.location.href = document.location.href;
+					document.location.href = "/";
 					$(dom).find("form")[0].reset();
 				} else {
 					alert(result);
