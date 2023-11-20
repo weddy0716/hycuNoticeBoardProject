@@ -25,7 +25,7 @@ function documentReady(container, callback) {
 }
 
 
-function ajaxAction(json, dataType , url , callback){
+function ajaxAction(json, dataType , url , callback , failcallback){
 	$("#loadingBar").show();
 	$.ajax(
         {
@@ -41,8 +41,10 @@ function ajaxAction(json, dataType , url , callback){
             },
             error : function(xhr, status, error){
 				$("#loadingBar").hide();
-                alert(xhr.status);           // 에러코드(404, 500 등)
-                alert(xhr.responseText); // html 포맷의 에러 메시지
+				
+				console.log("###PSH xhr : " + JSON.stringify(xhr));
+				
+				eval(failcallback(xhr.status , xhr.responseText))
             }
         }
     );

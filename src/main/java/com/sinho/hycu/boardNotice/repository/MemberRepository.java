@@ -4,4 +4,6 @@ import com.sinho.hycu.boardNotice.vo.Member;
 
 public interface MemberRepository {
 	Member memberJoin(Member member);
+	Member findByName(Member member);
+	Member findByEmail(Member member);
 }

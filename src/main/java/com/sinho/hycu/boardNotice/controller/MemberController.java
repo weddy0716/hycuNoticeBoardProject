@@ -2,14 +2,17 @@ package com.sinho.hycu.boardNotice.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sinho.hycu.boardNotice.service.MemberService;
 import com.sinho.hycu.boardNotice.vo.Member;
+import com.sinho.hycu.framework.exception.NoticeBoardException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,13 +57,20 @@ public class MemberController {
 		log.info("###ModelAndView createMember model : " + model);
 		log.info("###ModelAndView createMember : " + member.toString());
 		
-		memberService.join(member);
+		memberService.memberJoin(member);
 		log.info("###ModelAndView getID : " + member.getSeq());
 		return member.getSeq()+"";
 	}
 	
-	
-	
-	
-	
+	/**
+	 * 에러처리진행
+	 * @param ex
+	 * @return
+	 */
+	@ExceptionHandler(NoticeBoardException.class)
+    @ResponseBody
+    public ResponseEntity<String> handleCustomException(NoticeBoardException ex) {
+        // CustomException이 발생했을 때 처리하는 메서드
+        return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+    }
 }

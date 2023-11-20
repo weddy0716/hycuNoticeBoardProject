@@ -21,4 +21,20 @@
 		)
 	</insert>
 	
+	<!-- 아이디중복검사 -->
+	<select id="findByUserID" parameterType="Member" resultType="Member">
+		select 
+			userid
+		FROM MEMBER
+		WHERE userid = #{userid}
+	</select>
+	
+	<!-- 이메일중복검사 -->
+	<select id="findByEmail" parameterType="Member" resultType="Member">
+		select 
+			email
+		FROM MEMBER
+		WHERE email = #{email}
+	</select>
+	
 </mapper>

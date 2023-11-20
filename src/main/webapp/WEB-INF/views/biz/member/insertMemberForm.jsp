@@ -62,6 +62,8 @@
 				} else {
 					alert(result);
 				}
+			},function(errorCode , errorMsg){
+				alert(errorMsg);
 			});
 			
 		});
