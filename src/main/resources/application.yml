@@ -1,0 +1,21 @@
+---
+#이하공통
+spring:
+  profiles:
+    active: local # 기본 환경 선택
+
+  mvc: #JSP 사용을 위한 설정
+    view:
+      prefix: /WEB-INF/views/biz/
+      suffix: .jsp
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/hycu2022107598?UTC&allowPublickeyRetrieval=true
+    username: sinho
+    password: 5669qneo
+    maximum-pool-size: 5
+    max-lifetime: 1800000
+    idle-timeout: 180000
+    connection-timeout: 5000
+    transaction-isolation: TRANSACTION_READ_UNCOMMITTED

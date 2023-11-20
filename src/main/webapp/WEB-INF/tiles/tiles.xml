@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="layout-tiles" template="/WEB-INF/tiles/layout/layout.jsp">
+ 		<put-attribute name="title" value="한사대프로젝트" />
+		<put-attribute name="header" value="/WEB-INF/tiles/layout/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/tiles/layout/menu.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/tiles/layout/footer.jsp"/>
+	</definition>
+	
+	<!-- tiles 레이아웃 적용 -->
+ 	<definition name="*.tiles" extends="layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}.jsp"/>
+	</definition>
+ 	<definition name="*/*.tiles" extends="layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="*/*/*.tiles" extends="layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}/{2}/{3}.jsp"/>
+	</definition>
+	<definition name="*/*/*/*.tiles" extends="layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}/{2}/{3}/{4}.jsp"/>
+	</definition>
+	
+	<!-- tiles 레이아웃 미적용 -->
+	<definition name="layoutEmpty" template="/WEB-INF/tiles/layout/layoutEmpty.jsp"/>
+	<definition name="*.view" extends="layoutEmpty">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}.jsp" />
+	</definition>
+	<definition name="*/*.view" extends="layoutEmpty">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.view" extends="layoutEmpty">
+		<put-attribute name="body" value="/WEB-INF/views/biz/{1}/{2}/{3}.jsp" />
+	</definition>
+</tiles-definitions>

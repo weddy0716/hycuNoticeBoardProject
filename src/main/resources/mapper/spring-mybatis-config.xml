@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 카멜케이스 적용 -->
+	</settings>
+	<!--  
+	<typeAliases>
+		<typeAlias type="com.example.sample.domain.Member" alias="Member"/>
+	</typeAliases>
+	 -->
+</configuration>
