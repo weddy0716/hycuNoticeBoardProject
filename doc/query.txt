@@ -1,9 +1,23 @@
-CREATE TABLE hycu2022107598.Member (
-    seq INT PRIMARY KEY AUTO_INCREMENT,
-    userid VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(64) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    full_name VARCHAR(100) NOT NULL,
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+CREATE TABLE `loginmgt` (
+  `userid` varchar(10) NOT NULL COMMENT '사용자ID',
+  `password` varchar(64) NOT NULL COMMENT '비밀번호',
+  `last_login_dt` datetime DEFAULT NULL COMMENT '최근로그인시간',
+  `pass_error_cnt` varchar(1) DEFAULT '0' COMMENT '로그인실패횟수',
+  `last_login_ip` varchar(15) DEFAULT NULL,
+  `last_fail_login_dt` datetime DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='로그인테이블'
+
+CREATE TABLE `member` (
+  `seq` int NOT NULL AUTO_INCREMENT,
+  `userid` varchar(50) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `registration_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `pass_error_cnt` int DEFAULT '0' COMMENT '비밀번호오류횟수',
+  PRIMARY KEY (`seq`),
+  UNIQUE KEY `userid` (`userid`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
