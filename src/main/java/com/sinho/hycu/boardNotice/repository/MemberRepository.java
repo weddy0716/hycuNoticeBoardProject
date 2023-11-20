@@ -3,5 +3,5 @@ package com.sinho.hycu.boardNotice.repository;
 import com.sinho.hycu.boardNotice.vo.Member;
 
 public interface MemberRepository {
-	Member save(Member member);
+	Member memberJoin(Member member);
 }

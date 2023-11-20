@@ -28,7 +28,7 @@ public class MemberService {
 		//리팩토링(extract Method -> Alt + shift + m -> 함수명 지정
 		
 		//validateDuplicateMember(member); //중복확인
-		memberRepository.save(member);
+		memberRepository.memberJoin(member);
 		return member.getSeq();
 	}
 }

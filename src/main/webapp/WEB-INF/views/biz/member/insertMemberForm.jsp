@@ -52,8 +52,9 @@
 			param.password = password;
 			param.fullName = fullName;
 			param.email = email;
+			console.log("###PSH param : " + JSON.stringify(param));
 			
-			ajaxAction(param, "text", "/users/createUser.act", function(result){
+			ajaxAction(param, "text", "/members/createMember.act", function(result){
 				if(result == "") {
 					alert("회원 등록이 완료되었습니다.");
 					document.location.href = document.location.href;
@@ -62,6 +63,7 @@
 					alert(result);
 				}
 			});
+			
 		});
 	});
 </script>

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.sinho.hycu.boardNotice.repository.MemberRepository;
-import com.sinho.hycu.boardNotice.repository.impl.MybatisTemplateMemberRepository;
+import com.sinho.hycu.boardNotice.repository.impl.MybatisMapperMemberRepository;
 import com.sinho.hycu.boardNotice.repository.mapper.MemberMapper;
 import com.sinho.hycu.boardNotice.service.MemberService;
 
@@ -48,7 +48,7 @@ public class SpringConfig {
 		//return new JDBCMemberRepository(studyDBSource);
 		//return new JDBCTemplateMemberRepository(studyDBSource);
 		//return new JPAMemberRepository(em);
-		return new MybatisTemplateMemberRepository(sqlSession);
-		//return new MybatisMapperMemberRepository(memberMapper);
+		//return new MybatisTemplateMemberRepository(sqlSession);
+		return new MybatisMapperMemberRepository(memberMapper);
 	}
 }

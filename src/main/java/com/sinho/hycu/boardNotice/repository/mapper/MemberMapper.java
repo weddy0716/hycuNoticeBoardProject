@@ -6,5 +6,5 @@ import com.sinho.hycu.boardNotice.vo.Member;
 
 @Mapper
 public interface MemberMapper {
-	void save(Member member);
+	int memberJoin(Member member);
 }

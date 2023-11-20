@@ -59,4 +59,8 @@ public class MemberController {
 		return member.getSeq()+"";
 	}
 	
+	
+	
+	
+	
 }

@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3306/hycu2022107598?UTC&allowPublickeyRetrieval=true
     username: sinho
-    password: 5669qneo
+    password: 5669qneo!!
     maximum-pool-size: 5
     max-lifetime: 1800000
     idle-timeout: 180000

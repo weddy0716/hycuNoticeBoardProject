@@ -1,8 +1,7 @@
 package com.sinho.hycu.boardNotice.repository.impl;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.sinho.hycu.boardNotice.repository.MemberRepository;
+import com.sinho.hycu.boardNotice.repository.mapper.MemberMapper;
 import com.sinho.hycu.boardNotice.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,20 +15,21 @@ import lombok.extern.slf4j.Slf4j;
  * @author 박신호
  */
 @Slf4j
-public class MybatisTemplateMemberRepository implements MemberRepository {
+public class MybatisMapperMemberRepository implements MemberRepository {
 	
-	private SqlSession sqlSession;
+	private final MemberMapper memberMapper;
 	
-	public MybatisTemplateMemberRepository(SqlSession sqlsession) {
-		this.sqlSession = sqlsession;
+	//private SqlSession sqlSession;
+	
+	public MybatisMapperMemberRepository(MemberMapper memberMapper) {
+		this.memberMapper = memberMapper;
 	}
 	
 	@Override
 	public Member memberJoin(Member member) {
 		// TODO Auto-generated method stub
-		this.sqlSession.insert("SampleSource.save" , member);
-		log.debug("###PSH save member {}" , member.getSeq());
-		//member.setId(result);
+		int result = this.memberMapper.memberJoin(member);
+		member.setSeq(result);
 		return member;
 	}
 
