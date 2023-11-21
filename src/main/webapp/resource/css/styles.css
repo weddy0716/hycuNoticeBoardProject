@@ -11700,3 +11700,8 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+table.table02 caption{height:45px;line-height:45px;color:#333;padding-left:35px;border-top:3px solid #464646;border-bottom:1px solid #c9c9c9;background:#ececec}
+table.table02 caption.center{padding-top:6px;height:39px;line-height:130%;text-align:center;color:#333;padding-left:0;border-top:3px solid #464646;border-bottom:1px solid #c9c9c9;background:#ececec}
+table.table02 tbody th{padding:10px;vertical-align:middle;font-family:'malgunbd';color:#333;border-right:1px solid #c9c9c9;border-bottom:1px solid #c9c9c9;background:#ececec}
+table.table02 tbody td{padding:10px;vertical-align:middle;padding-left:15px;background:#fafafa;border-bottom:1px solid #c9c9c9}
