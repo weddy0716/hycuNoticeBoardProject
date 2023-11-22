@@ -23,4 +23,13 @@ CREATE TABLE `member` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
- 
+ CREATE TABLE `boardlist` (
+  `seq` int NOT NULL AUTO_INCREMENT,
+  `userid` varchar(10) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `contents` varchar(2000) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL,
+  `create_dt` datetime DEFAULT NULL,
+  `update_dt` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
