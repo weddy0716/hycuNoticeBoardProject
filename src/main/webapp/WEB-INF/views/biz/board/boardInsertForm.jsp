@@ -37,6 +37,7 @@
 			ajaxAction(param, "text", "/board/boardInsert.act", function(result){
 				if(result == "1") {
 					alert("등록되었습니다.");
+					location.href = "/board/boardlist";
 				} else {
 					alert(result);
 				}
@@ -48,7 +49,7 @@
 		});
 		
 		$(dom).find("#boardNoticeList").bind("click" , function(){
-			alert("boardNoticeList")
+			location.href = "/board/boardlist";
 		});
 	});
 </script>
