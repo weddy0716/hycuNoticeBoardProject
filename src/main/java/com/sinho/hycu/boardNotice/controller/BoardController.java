@@ -1,5 +1,7 @@
 package com.sinho.hycu.boardNotice.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,17 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/board/boardDetailForm")
+	public ModelAndView boardDetailForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+		ModelAndView mv = new ModelAndView();
+		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
+		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
+		mv.setViewName("/board/boardDetailForm.tiles");
+		BoardListMgt boardListDetail = boardListService.selectNoticeBoardDetail(boardMgt);
+		mv.addObject("detail", boardListDetail);
+		return mv;
+	}
+	
 	@ResponseBody
 	@RequestMapping("/board/boardInsert.act")
 	public String boardInsert(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
@@ -47,9 +60,10 @@ public class BoardController {
 	@RequestMapping("/board/boardlist")
 	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
 		ModelAndView mv = new ModelAndView();
-		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
-		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
 		mv.setViewName("/board/boardlistForm.tiles");
+		List<BoardListMgt> list = boardListService.selectNoticeBoardList();
+		log.info("###PSH boardlistForm : {}" , list );
+		mv.addObject("boardlist" , list);
 		return mv;
 	}
 	

@@ -1,5 +1,7 @@
 package com.sinho.hycu.boardNotice.repository.impl;
 
+import java.util.List;
+
 import com.sinho.hycu.boardNotice.repository.BoardListRepository;
 import com.sinho.hycu.boardNotice.repository.mapper.BoardListMapper;
 import com.sinho.hycu.boardNotice.vo.BoardListMgt;
@@ -28,5 +30,17 @@ public class MybatisMapperBoardListRepository implements BoardListRepository {
 		// TODO Auto-generated method stub
 		int result = this.boardListMapper.insertNoticeBoardList(boardmgt);
 		return result;
+	}
+
+	@Override
+	public List<BoardListMgt> selectNoticeBoardList() {
+		List<BoardListMgt> boardList = this.boardListMapper.selectNoticeBoardList();
+		return boardList;
+	}
+
+	@Override
+	public BoardListMgt selectNoticeBoardDetail(BoardListMgt boardmgt) {
+		BoardListMgt boardDetail = this.boardListMapper.selectNoticeBoardDetail(boardmgt);
+		return boardDetail;
 	}
 }

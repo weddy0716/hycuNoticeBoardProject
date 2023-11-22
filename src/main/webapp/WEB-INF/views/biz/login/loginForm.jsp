@@ -62,8 +62,7 @@
 			ajaxAction(param, "text", "/login/userlogin.act", function(result){
 				if(result == "1") {
 					alert("로그인이완료되었습니다.");
-					document.location.href = "/";
-					$(dom).find("form")[0].reset();
+					location.href = "/board/boardlist";
 				} else {
 					alert(result);
 				}

@@ -18,4 +18,30 @@
 			now()
 		)
 	</insert>
+	
+	<!-- 게시판목록조회 -->
+	<select id="selectNoticeBoardList" resultType="BoardListMgt">
+		SELECT
+		    seq,
+			userid,
+			subject,
+			contents,
+			create_dt,
+			update_dt
+		 FROM boardList
+		 ORDER BY seq DESC
+	</select>
+	
+	<!-- 게시글 조회 -->
+	<select id="selectNoticeBoardDetail" resultType="BoardListMgt">
+		SELECT
+		    seq,
+			userid,
+			subject,
+			contents,
+			create_dt,
+			update_dt
+		 FROM boardList
+		 WHERE seq = #{seq}
+	</select>
 </mapper>
