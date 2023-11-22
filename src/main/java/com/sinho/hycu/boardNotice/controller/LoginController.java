@@ -46,7 +46,7 @@ public class LoginController {
             e.printStackTrace();
         }
 		
-		loginService.userLogin(loginmgt);
+		loginService.userLogin(request , loginmgt);
 		
 		return "1";
 	}

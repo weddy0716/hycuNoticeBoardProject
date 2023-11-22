@@ -9,4 +9,5 @@ public interface MemberMapper {
 	int memberJoin(Member member);
 	Member findByUserID(Member member);
 	Member findByEmail(Member member);
+	Member findByUserInfo(Member member);
 }

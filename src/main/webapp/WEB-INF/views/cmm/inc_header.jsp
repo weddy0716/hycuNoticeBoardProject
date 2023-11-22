@@ -41,7 +41,7 @@
 	isFirstInit();
 	
 </script>
-
+<link rel="stylesheet" href="/resource/css/bootstrap.min.css">
 <style type="text/css" >
 .wrap-loading{ /*화면 전체를 어둡게 합니다.*/
     position: fixed;

@@ -37,4 +37,16 @@
 		WHERE email = #{email}
 	</select>
 	
+	<!-- 사용자정보가져오기 -->
+	<select id="findByUserInfo" parameterType="Member" resultType="Member">
+		select 
+			userid,
+			email,
+			full_name,
+			update_date
+		FROM MEMBER
+		WHERE userid = #{userid}
+		AND password = #{password}
+	</select>
+	
 </mapper>

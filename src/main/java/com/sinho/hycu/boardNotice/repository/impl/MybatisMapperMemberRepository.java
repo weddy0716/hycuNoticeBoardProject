@@ -44,5 +44,10 @@ public class MybatisMapperMemberRepository implements MemberRepository {
 		Member result = this.memberMapper.findByEmail(member);
 		return result;
 	}
-
+	
+	@Override
+	public Member findByUserInfo(Member member) {
+		Member result = this.memberMapper.findByUserInfo(member);
+		return result;
+	}
 }

@@ -69,11 +69,7 @@
 				}
 			},function(errorCode , errorMsg){
 				var customErrorObj = errorMsg.split("||");
-				if(customErrorObj[1] == "COMM_0001"){
-					alert(customErrorObj[0]);
-				}
-				
-				
+				alert("errorCode:" + customErrorObj[1] + " || " + customErrorObj[0]);
 			});
 		});
 		

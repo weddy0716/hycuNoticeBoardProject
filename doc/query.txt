@@ -8,6 +8,7 @@ CREATE TABLE `loginmgt` (
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='로그인테이블'
 
+
 CREATE TABLE `member` (
   `seq` int NOT NULL AUTO_INCREMENT,
   `userid` varchar(50) NOT NULL,

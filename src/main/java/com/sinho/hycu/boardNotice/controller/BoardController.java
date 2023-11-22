@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sinho.hycu.boardNotice.vo.BoardMgt;
+import com.sinho.hycu.boardNotice.service.BoardListService;
+import com.sinho.hycu.boardNotice.vo.BoardListMgt;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +20,45 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BoardController {
 	
+	private BoardListService boardListService;
+	
+	public BoardController( BoardListService boardListService )
+	{
+		this.boardListService = boardListService;
+	}
+	
 	@RequestMapping("/board/boardInsertForm")
-	public ModelAndView userLogin(HttpServletRequest request, BoardMgt boardMgt ,  Model model) {
+	public ModelAndView boardInsertForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
 		ModelAndView mv = new ModelAndView();
 		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
 		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
 		mv.setViewName("/board/boardInsertForm.tiles");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/board/boardInsert.act")
+	public String boardInsert(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
+		log.info("###PSH boardListMgt : {}" , boardListMgt);
+		int result = boardListService.insertNoticeBoardList(request, boardListMgt);
+		return String.valueOf(result);
+	}
+	
+	@RequestMapping("/board/boardlist")
+	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+		ModelAndView mv = new ModelAndView();
+		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
+		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
+		mv.setViewName("/board/boardlistForm.tiles");
+		return mv;
+	}
+	
+	@RequestMapping("/board/boardModifyForm")
+	public ModelAndView boardModifyForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+		ModelAndView mv = new ModelAndView();
+		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
+		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
+		mv.setViewName("/board/boardModifyForm.tiles");
 		return mv;
 	}
 	
