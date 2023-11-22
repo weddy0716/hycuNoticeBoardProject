@@ -43,4 +43,10 @@ public class MybatisMapperBoardListRepository implements BoardListRepository {
 		BoardListMgt boardDetail = this.boardListMapper.selectNoticeBoardDetail(boardmgt);
 		return boardDetail;
 	}
+
+	@Override
+	public int UpdateNoticeBoardDetail(BoardListMgt boardmgt) {
+		int result = this.boardListMapper.UpdateNoticeBoardDetail(boardmgt);
+		return result;
+	}
 }

@@ -47,12 +47,17 @@ public class BoardListService {
 	}
 	
 	/**
-	 * 게시판목록조회
+	 * 게시판상세조회
 	 * @return
 	 */
 	public BoardListMgt selectNoticeBoardDetail(BoardListMgt boardListMgt){
 		BoardListMgt boardListDetail = this.boardListRepository.selectNoticeBoardDetail(boardListMgt);
 		log.info("###PSH list : {}" , boardListDetail);
 		return boardListDetail;
+	}
+	
+	public int UpdateNoticeBoardDetail(BoardListMgt boardListMgt){
+		int result = this.boardListRepository.UpdateNoticeBoardDetail(boardListMgt);
+		return result;
 	}
 }

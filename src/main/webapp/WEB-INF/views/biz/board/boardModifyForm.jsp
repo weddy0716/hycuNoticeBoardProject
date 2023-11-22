@@ -26,26 +26,22 @@
         <form>
             <div class="form-group">
                 <label for="postTitle">제목</label>
-                <input type="text" class="form-control" id="subject" name="subject" required>
+                <input type="text" class="form-control" id="subject" name="subject" value="${detail.subject}" required>
             </div>
 
             <div class="form-group">
                 <label for="postContent">내용</label>
-                <textarea class="form-control" id="contents" name="contents" rows="8" required></textarea>
+                <textarea class="form-control" id="contents" name="contents" rows="8" required>${detail.contents}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" name="author" required>
+                <input type="text" class="form-control" id="author" name="author" value="${detail.userid}" required readonly>
             </div>
 
-            <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-			
 	        <div class="btn-container">
-	        	<button type="submit" class="btn btn-primary">수정하기</button>
+	        	<button type="button" class="btn btn-info">목록</button>
+	        	<button type="button" class="btn btn-primary">수정하기</button>
 	            <button type="button" class="btn btn-danger">삭제하기</button>
 	        </div>
         </form>
@@ -54,8 +50,31 @@
    
 <script type="text/javascript">
 	documentReady("#boardModifyForm" , function(dom){
-		$(dom).find("#insertBoardForm").bind("click" , function(){
-			
+		
+		$(dom).find(".btn-info").bind("click" , function(){
+			location.href = "/board/boardlist";
 		});
+		
+		$(dom).find(".btn-primary").bind("click" , function(){
+			var param = {};
+			param.seq = "${detail.seq}";
+			param.subject = $(dom).find("#subject").val();
+			param.contents = $(dom).find("#contents").val();
+			
+			console.log("##param : " + JSON.stringify(param));
+			
+			ajaxAction(param, "text", "/board/boardDetailUpdate.act", function(result){
+				if(result == "1") {
+					alert("수정되었습니다.목록으로이동합니다.");
+					location.href = "/board/boardlist";
+				} else {
+					alert(result);
+				}
+			},function(errorCode , errorMsg){
+				var customErrorObj = errorMsg.split("||");
+				alert("errorCode:" + customErrorObj[1] + " || " + customErrorObj[0]);
+			});
+		});
+		
 	});
 </script>

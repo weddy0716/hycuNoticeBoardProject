@@ -35,7 +35,7 @@
             </div>
 
 	        <div class="btn-container">
-	        	<button type="submit" class="btn btn-primary">수정하기</button>
+	        	<button type="button" class="btn btn-primary">수정하기</button>
 	            <button type="button" class="btn btn-danger">삭제하기</button>
 	        </div>
         </form>
@@ -44,8 +44,8 @@
    
 <script type="text/javascript">
 	documentReady("#boardDetailForm" , function(dom){
-		$(dom).find("#insertBoardForm").bind("click" , function(){
-			
+		$(dom).find(".btn-primary").bind("click" , function(){
+			location.href = "/board/boardModifyForm?seq=" + "${detail.seq}";
 		});
 	});
 </script>

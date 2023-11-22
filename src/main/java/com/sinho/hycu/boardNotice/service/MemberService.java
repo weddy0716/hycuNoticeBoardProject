@@ -48,12 +48,12 @@ public class MemberService  {
 		Optional<Member> searchUserIdResult = Optional.ofNullable(memberRepository.findByName(member));
 		searchUserIdResult.ifPresent(m -> {
 			//throw new IllegalStateException("이미 존재하는 회원 입니다.[0]");
-			throw new NoticeBoardException("이미 존재하는 회원 입니다.[0]", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new NoticeBoardException("이미 존재하는 회원 입니다.[0] 등록된 아이디가 있습니다.", HttpStatus.INTERNAL_SERVER_ERROR , "MEMB_001");
 		});
 		
 		Optional<Member> searchEmailResult = Optional.ofNullable(memberRepository.findByEmail(member));
 		searchEmailResult.ifPresent(m -> {
-			throw new NoticeBoardException("이미 존재하는 회원 입니다.[1]", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new NoticeBoardException("이미 존재하는 회원 입니다.[1] 등록된 이메일이 있습니다.", HttpStatus.INTERNAL_SERVER_ERROR , "MEMB_002");
 		});
 	}
 }

@@ -57,6 +57,14 @@ public class BoardController {
 		return String.valueOf(result);
 	}
 	
+	@ResponseBody
+	@RequestMapping("/board/boardDetailUpdate.act")
+	public String boardDetailUpdate(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
+		log.info("###PSH boardListMgt : {}" , boardListMgt);
+		int result = boardListService.UpdateNoticeBoardDetail(boardListMgt);
+		return String.valueOf(result);
+	}
+	
 	@RequestMapping("/board/boardlist")
 	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
 		ModelAndView mv = new ModelAndView();
@@ -72,7 +80,9 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
 		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
+		BoardListMgt boardListDetail = boardListService.selectNoticeBoardDetail(boardMgt);
 		mv.setViewName("/board/boardModifyForm.tiles");
+		mv.addObject("detail", boardListDetail);
 		return mv;
 	}
 	

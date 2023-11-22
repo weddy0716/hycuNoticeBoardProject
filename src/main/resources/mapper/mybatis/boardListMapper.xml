@@ -44,4 +44,15 @@
 		 FROM boardList
 		 WHERE seq = #{seq}
 	</select>
+	
+	<!-- 게시글 업데이트 -->
+	<update id="UpdateNoticeBoardDetail" parameterType="BoardListMgt">
+		UPDATE
+			boardList
+		SET
+		    subject = #{subject},
+			contents = #{contents},
+			update_dt = now()
+		 WHERE seq = #{seq}
+	</update>
 </mapper>

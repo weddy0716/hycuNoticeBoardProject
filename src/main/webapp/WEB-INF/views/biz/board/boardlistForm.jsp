@@ -37,5 +37,9 @@
 			param.seq = $(this).data("seq");
 			location.href = "/board/boardDetailForm?seq="+$(this).data("seq");	
 		});
+		
+		$(dom).find(".btn-primary").bind("click" , function(){
+			location.href = "/board/boardInsertForm";
+		})
 	});
 </script>
