@@ -29,6 +29,7 @@
 			create_dt,
 			update_dt
 		 FROM boardList
+		 WHERE delete_flag IS NULL
 		 ORDER BY seq DESC
 	</select>
 	
@@ -53,6 +54,15 @@
 		    subject = #{subject},
 			contents = #{contents},
 			update_dt = now()
+		 WHERE seq = #{seq}
+	</update>
+	
+	<!-- 게시글 삭제처리(화면에만 미노출) -->
+	<update id="DeleteNoticeBoardList" parameterType="BoardListMgt">
+		UPDATE
+			boardList
+		SET
+		    delete_flag = 'Y'
 		 WHERE seq = #{seq}
 	</update>
 </mapper>

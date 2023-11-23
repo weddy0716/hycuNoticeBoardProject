@@ -6,6 +6,7 @@ public class PasswordCrypto {
 	
 	/**
 	 * 입력된 패스워드 데이터를 해싱한다.  
+	 * 인증코드6자리 데이터를 해싱한다.  
 	 * @param pw
 	 * @return
 	 */

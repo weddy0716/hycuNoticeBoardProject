@@ -37,6 +37,16 @@
 		WHERE email = #{email}
 	</select>
 	
+	<!-- 비밀번호재설정을 위한 정보 조회 -->
+	<select id="findByUserVerifyInfo" parameterType="Member" resultType="Member">
+		select 
+			userid,
+			email
+		FROM MEMBER
+		WHERE userid = #{userid}
+		AND email = #{email}
+	</select>
+	
 	<!-- 사용자정보가져오기 -->
 	<select id="findByUserInfo" parameterType="Member" resultType="Member">
 		select 
@@ -47,6 +57,31 @@
 		FROM MEMBER
 		WHERE userid = #{userid}
 		AND password = #{password}
+	</select>
+	
+	<insert id="insertMemberVerifyMgt" useGeneratedKeys="true" keyProperty="seq" >
+		insert into memberverifymgt(
+			userid,
+		    verify_code,
+		    regist_dt,
+		    send_email
+		) values (
+			#{userid},
+			#{verifyCode},
+			now(),
+			#{sendEmail}
+		)
+	</insert>
+	
+	<!-- 인증코드검증 -->
+	<select id="selectMemberVerifyMgt" parameterType="MemberVerifyMgt" resultType="MemberVerifyMgt">
+		select 
+			userid,
+			send_email
+		FROM MemberVerifyMgt
+		WHERE userid = #{userid}
+		AND verify_code = #{verifyCode}
+		AND send_email = #{sendEmail}
 	</select>
 	
 </mapper>

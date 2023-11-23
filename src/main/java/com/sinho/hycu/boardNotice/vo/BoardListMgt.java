@@ -13,4 +13,5 @@ public class BoardListMgt {
 	private String password;    // 비밀번호
 	private String createDt;   // 생성시간
 	private String updateDt;   // 업데이트시간
+	private String deleteFlag; //게시글삭제여부
 }

@@ -3,6 +3,7 @@ package com.sinho.hycu.boardNotice.repository.impl;
 import com.sinho.hycu.boardNotice.repository.MemberRepository;
 import com.sinho.hycu.boardNotice.repository.mapper.MemberMapper;
 import com.sinho.hycu.boardNotice.vo.Member;
+import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,6 +49,27 @@ public class MybatisMapperMemberRepository implements MemberRepository {
 	@Override
 	public Member findByUserInfo(Member member) {
 		Member result = this.memberMapper.findByUserInfo(member);
+		return result;
+	}
+
+	@Override
+	public Member findByUserVerifyInfo(Member member) {
+		Member result = this.memberMapper.findByUserVerifyInfo(member);
+		return result;
+	}
+
+	/**
+	 * 인증코드발송저장
+	 */
+	@Override
+	public int insertMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt) {
+		int result = this.memberMapper.insertMemberVerifyMgt(memberVerifyMgt);
+		return result;
+	}
+
+	@Override
+	public MemberVerifyMgt selectMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt) {
+		MemberVerifyMgt result = this.memberMapper.selectMemberVerifyMgt(memberVerifyMgt);
 		return result;
 	}
 }

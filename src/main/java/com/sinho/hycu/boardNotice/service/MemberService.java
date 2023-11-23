@@ -9,7 +9,9 @@ import com.sinho.hycu.boardNotice.repository.LoginRepository;
 import com.sinho.hycu.boardNotice.repository.MemberRepository;
 import com.sinho.hycu.boardNotice.vo.LoginMgt;
 import com.sinho.hycu.boardNotice.vo.Member;
+import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
 import com.sinho.hycu.common.util.PasswordCrypto;
+import com.sinho.hycu.common.util.RandomVerifyCodeUtil;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +39,27 @@ public class MemberService  {
 		//로그인정보테이블 저장
 		loginRepository.loginFirstInsert(new LoginMgt().setUserid(member.getUserid()).setPassword(member.getPassword()));
 		return member.getSeq();
+	}
+	
+	public Member findByUserVerifyInfo(Member member) {
+		Member result = memberRepository.findByUserVerifyInfo(member);
+		return result;
+	}
+	
+	
+	public MemberVerifyMgt insertMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt) {
+		String verifyCode = RandomVerifyCodeUtil.generateVerifyCode();
+		memberVerifyMgt.setRawVerifyCode(verifyCode).setVerifyCode(PasswordCrypto.SHA256(verifyCode));
+		int result = memberRepository.insertMemberVerifyMgt(memberVerifyMgt);
+		log.info("###PSH insertMemberVerifyMgt result:{}" , result);
+		return memberVerifyMgt;
+	}
+	
+	public MemberVerifyMgt selectMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt) {
+		String verifyCode = memberVerifyMgt.getVerifyCode();
+		memberVerifyMgt.setVerifyCode(PasswordCrypto.SHA256(verifyCode));
+		MemberVerifyMgt result = memberRepository.selectMemberVerifyMgt(memberVerifyMgt);
+		return result;
 	}
 	
 	/**

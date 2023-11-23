@@ -47,7 +47,12 @@
         </form>
     </div>
 </div>
-   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"> </script> 
+<script type="text/javascript"> 
+	(function(){ 
+    	emailjs.init("9C0-YeLj8ngucDvlJ"); 
+     })(); 
+</script>   
 <script type="text/javascript">
 	documentReady("#boardModifyForm" , function(dom){
 		
@@ -74,6 +79,37 @@
 				var customErrorObj = errorMsg.split("||");
 				alert("errorCode:" + customErrorObj[1] + " || " + customErrorObj[0]);
 			});
+		});
+		
+		$(dom).find(".btn-danger").bind("click" , function(){
+			var param = {};
+			param.seq = "${detail.seq}";
+			ajaxAction(param, "text", "/board/boardListDelete.act", function(result){
+				if(result == "1") {
+					alert("삭제처리되었습니다..목록으로이동합니다.");
+					location.href = "/board/boardlist";
+				} else {
+					alert(result);
+				}
+			},function(errorCode , errorMsg){
+				var customErrorObj = errorMsg.split("||");
+				alert("errorCode:" + customErrorObj[1] + " || " + customErrorObj[0]);
+			});
+			/*
+			alert("이메일보내기 테스트");
+			var emailTemplateParam = { 
+				to_name : "업무테스트" ,
+				verify_code : "997759",
+				to_email: "weddy0716@naver.com" ,
+				reply_to: "weddy0716@naver.com" 
+			};
+			emailjs.send('service_6b3sm3d', 'template_79hu9to' , emailTemplateParam)
+			    .then(function(response) {
+			       console.log('##박신호 EMAIL SUCCESS!', response.status, response.text);
+			    }, function(error) {
+			       console.log('##박신호 EMAIL FAILED...', error);
+			    });
+			*/
 		});
 		
 	});

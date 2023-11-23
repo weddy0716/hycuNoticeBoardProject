@@ -9,4 +9,5 @@ public interface BoardListRepository {
 	List<BoardListMgt> selectNoticeBoardList(); //게시판목록가져오기
 	BoardListMgt selectNoticeBoardDetail(BoardListMgt boardmgt); //게시판목록가져오기
 	int UpdateNoticeBoardDetail(BoardListMgt boardmgt); 		 //게시글 업데이트
+	int DeleteNoticeBoardList(BoardListMgt boardmgt); 		 	 //게시글 삭제
 }

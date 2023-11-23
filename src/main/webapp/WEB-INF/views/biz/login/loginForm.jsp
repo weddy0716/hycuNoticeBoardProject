@@ -78,7 +78,7 @@
 		});
 		
 		$(dom).find("#forgetPassword").bind("click",function(){
-			
+			location.href = "/member/MemberPasswordFindForm";
 		});
 		
 	});

@@ -56,8 +56,23 @@ public class BoardListService {
 		return boardListDetail;
 	}
 	
+	/**
+	 * 게시글 수정
+	 * @param boardListMgt
+	 * @return
+	 */
 	public int UpdateNoticeBoardDetail(BoardListMgt boardListMgt){
 		int result = this.boardListRepository.UpdateNoticeBoardDetail(boardListMgt);
+		return result;
+	}
+	
+	/**
+	 * 게시글 삭제(화면에만 비노출) 
+	 * @param boardListMgt
+	 * @return
+	 */
+	public int DeleteNoticeBoardList(BoardListMgt boardListMgt){
+		int result = this.boardListRepository.DeleteNoticeBoardList(boardListMgt);
 		return result;
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sinho.hycu.boardNotice.service.MemberService;
 import com.sinho.hycu.boardNotice.vo.Member;
+import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,43 @@ public class MemberController {
 		mv.setViewName("/member/insertMemberForm.view");
 		return mv;
 	}
+	
+	@RequestMapping(value={"/member/MemberPasswordFindForm"})
+	public ModelAndView memberPasswordFindForm(Model model) {
+		ModelAndView mv = new ModelAndView();
+		log.info("##PSH join/memberJoin Call");
+		mv.setViewName("/member/MemberPasswordFindForm.view");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value={"/member/memberFindByUserVerifyInfo.act"})
+	public String memberFindByUserVerifyInfo(Member member , Model model) {
+		Member userinfo = memberService.findByUserVerifyInfo(member);
+
+		String result = (userinfo == null) ? "0" : "1";
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value={"/member/passwordVerifyCode.act"})
+	public String memberPasswordVerifyCode(MemberVerifyMgt memberVerifyMgt , Model model) {
+		MemberVerifyMgt result = memberService.insertMemberVerifyMgt(memberVerifyMgt);
+		String verifyCode = result.getRawVerifyCode();
+		return verifyCode;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value={"/member/verifyCodeConfirm.act"})
+	public String memberPasswordVerifyCodeConfirm(MemberVerifyMgt memberVerifyMgt , Model model) {
+		MemberVerifyMgt verifyCodeConfirmResult = memberService.selectMemberVerifyMgt(memberVerifyMgt);
+		
+		String result = (verifyCodeConfirmResult == null) ? "0" : "1";
+		
+		return result;
+	}
+	
 	@RequestMapping(value={"/" , "/index"})
     private ModelAndView main(HttpServletRequest request, Model model) {
 		ModelAndView mv = new ModelAndView();

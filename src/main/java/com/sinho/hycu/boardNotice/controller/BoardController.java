@@ -65,6 +65,14 @@ public class BoardController {
 		return String.valueOf(result);
 	}
 	
+	@ResponseBody
+	@RequestMapping("/board/boardListDelete.act")
+	public String boardListDelete(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
+		log.info("###PSH boardListMgt : {}" , boardListMgt);
+		int result = boardListService.DeleteNoticeBoardList(boardListMgt);
+		return String.valueOf(result);
+	}
+	
 	@RequestMapping("/board/boardlist")
 	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
 		ModelAndView mv = new ModelAndView();

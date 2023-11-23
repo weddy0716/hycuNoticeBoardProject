@@ -49,4 +49,10 @@ public class MybatisMapperBoardListRepository implements BoardListRepository {
 		int result = this.boardListMapper.UpdateNoticeBoardDetail(boardmgt);
 		return result;
 	}
+
+	@Override
+	public int DeleteNoticeBoardList(BoardListMgt boardmgt) {
+		int result = this.boardListMapper.DeleteNoticeBoardList(boardmgt);
+		return result;
+	}
 }
