@@ -72,4 +72,11 @@ public class MybatisMapperMemberRepository implements MemberRepository {
 		MemberVerifyMgt result = this.memberMapper.selectMemberVerifyMgt(memberVerifyMgt);
 		return result;
 	}
+
+	@Override
+	public int updateMemberPasswordReset(Member member) {
+		// TODO Auto-generated method stub
+		int result = this.memberMapper.updateMemberPasswordReset(member);
+		return result;
+	}
 }

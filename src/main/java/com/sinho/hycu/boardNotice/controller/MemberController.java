@@ -79,6 +79,13 @@ public class MemberController {
 		return result;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value={"/member/memberResetPassword.act"})
+	public String memberResetPassword(Member member , Model model) {
+		int result = memberService.updateMemberPasswordReset(member);
+		return String.valueOf(result);
+	}
+	
 	@RequestMapping(value={"/" , "/index"})
     private ModelAndView main(HttpServletRequest request, Model model) {
 		ModelAndView mv = new ModelAndView();

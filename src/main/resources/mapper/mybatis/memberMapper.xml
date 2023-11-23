@@ -84,4 +84,15 @@
 		AND send_email = #{sendEmail}
 	</select>
 	
+	<!-- 사용자 비밀번호 재설정 -->
+	<update id="updateMemberPasswordReset" parameterType="Member" >
+		UPDATE 
+			MEMBER
+		SET
+			password = #{password},
+			update_date = now(),
+			pass_error_cnt = 0
+		WHERE userid = #{userid}
+		AND   email = #{email}
+	</update>
 </mapper>

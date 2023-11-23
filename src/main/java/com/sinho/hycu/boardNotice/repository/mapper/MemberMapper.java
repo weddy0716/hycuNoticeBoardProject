@@ -17,4 +17,5 @@ public interface MemberMapper {
 	
 	MemberVerifyMgt selectMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt);
 	
+	int updateMemberPasswordReset(Member member);
 }

@@ -116,6 +116,42 @@
 					alert("인증번호가 일치하지 않습니다.");
 				}
 			});
+		});
+		
+		$(dom).find("#passwordReset").bind("click" , function(){
+			var password   = $(dom).find("#password").val();
+			var repassword = $(dom).find("#repassword").val();
+			
+			if(password == ""){
+				alert("비밀번호를 입력하여 주십시오.");
+				return;
+			}
+			
+			if(repassword == ""){
+				alert("비밀번호 입력하여 주십시오.");
+				return;
+			}
+			
+			if(password != repassword){
+				alert("입력된 비밀번호 값이 다릅니다.");
+				return;
+			}
+			
+			var param = {};
+			param.userid   = $(dom).find("#userid").val();
+			param.email    = $(dom).find("#email").val();
+			param.password = $(dom).find("#password").val();
+			
+			ajaxAction(param, "text", "/member/memberResetPassword.act", function(result){
+				if(result == "1"){
+					alert("비밀번호 재설정이 완료 되었습니다. 로그인 화면으로 이동합니다.");
+					location.href = "/";
+				}else{
+					alert("비밀번호 재설정중 오류가 발생하였습니다.");
+				}
+			});
+			
+			
 			
 		});
 	});

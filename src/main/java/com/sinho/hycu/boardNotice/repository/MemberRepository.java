@@ -14,4 +14,6 @@ public interface MemberRepository {
 	int insertMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt);
 	
 	MemberVerifyMgt selectMemberVerifyMgt(MemberVerifyMgt memberVerifyMgt); //인증코드검증
+	
+	int updateMemberPasswordReset(Member member); //비밀번호재설정
 }

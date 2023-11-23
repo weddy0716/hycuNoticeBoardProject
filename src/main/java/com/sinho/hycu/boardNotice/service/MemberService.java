@@ -62,6 +62,13 @@ public class MemberService  {
 		return result;
 	}
 	
+	public int updateMemberPasswordReset(Member member) {
+		String password = member.getPassword();
+		member.setPassword(PasswordCrypto.SHA256(password));
+		int result = memberRepository.updateMemberPasswordReset(member);
+		return result;
+	}
+	
 	/**
 	 * 회원가입시 아이디,이메일중복체크를 진행한다.
 	 * @param member
