@@ -1,3 +1,15 @@
+CREATE TABLE `boardlist` (
+  `seq` int NOT NULL AUTO_INCREMENT,
+  `userid` varchar(10) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `contents` varchar(2000) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL,
+  `create_dt` datetime DEFAULT NULL,
+  `update_dt` datetime DEFAULT NULL,
+  `delete_flag` varchar(1) DEFAULT NULL COMMENT '게시글삭제처리(Y:삭제)',
+  PRIMARY KEY (`seq`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 CREATE TABLE `loginmgt` (
   `userid` varchar(10) NOT NULL COMMENT '사용자ID',
   `password` varchar(64) NOT NULL COMMENT '비밀번호',
@@ -7,7 +19,6 @@ CREATE TABLE `loginmgt` (
   `last_fail_login_dt` datetime DEFAULT NULL,
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='로그인테이블'
-
 
 CREATE TABLE `member` (
   `seq` int NOT NULL AUTO_INCREMENT,
@@ -21,15 +32,14 @@ CREATE TABLE `member` (
   PRIMARY KEY (`seq`),
   UNIQUE KEY `userid` (`userid`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
- CREATE TABLE `boardlist` (
-  `seq` int NOT NULL AUTO_INCREMENT,
-  `userid` varchar(10) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `contents` varchar(2000) DEFAULT NULL,
-  `password` varchar(64) DEFAULT NULL,
-  `create_dt` datetime DEFAULT NULL,
-  `update_dt` datetime DEFAULT NULL,
+CREATE TABLE `memberverifymgt` (
+  `seq` int NOT NULL AUTO_INCREMENT COMMENT 'seq',
+  `userid` varchar(10) DEFAULT NULL COMMENT '사용자ID',
+  `verify_code` varchar(64) DEFAULT NULL COMMENT '인증코드해시',
+  `regist_dt` datetime DEFAULT NULL COMMENT '등록시간',
+  `send_email` varchar(45) DEFAULT NULL COMMENT '발송이메일',
+  `use_flag` varchar(1) DEFAULT NULL COMMENT '유효여부(인증번호재발송시 이전데이터 Y)',
   PRIMARY KEY (`seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='인증코드 저장 테이블'
