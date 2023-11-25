@@ -1,4 +1,15 @@
+<%@ page pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/cmm/inc_header.jsp" %>
+<%@ page import="com.sinho.hycu.framework.session.SessionManager"%>
+
+<%
+	
+	boolean loginFlag = SessionManager.getSession(request , "userinfo") == null ? false : true;
+	
+	System.out.println("###PSH layout loginFlag : " + loginFlag);
+	System.out.println("###PSH layout request : " + request.getRequestURI());
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,11 +23,13 @@
     <link href="/resource/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-
-<!--
-	메뉴 스크롤 X: <body>
-	메뉴 스크롤 O: <body class="sb-nav-fixed">
--->
+<script type="text/javascript">
+	var loginFlag = "<%=loginFlag%>";
+	if(loginFlag == "false"){
+		alert("로그인이 필요한 서비스 입니다. 로그인 페이지로 이동합니다.");
+		location.href = "/";
+	}
+   </script>
 <body>
 	<tiles:insertAttribute name="header" ignore="true"/>
 	<div id="layoutSidenav">
@@ -30,15 +43,8 @@
 	</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<!--     <script src="/resource/assets/demo/chart-area-demo.js"></script> -->
-<!--     <script src="/resource/assets/demo/chart-bar-demo.js"></script> -->
-    <script src="/resource/js/scripts.js"></script>
-    <script src="/resource/js/datatables-simple.js"></script>
     <script type="text/javascript">
-    	// 입력값 filter
-		JUtilFilter.filter();
+		
     </script>
 </body>
 </html>

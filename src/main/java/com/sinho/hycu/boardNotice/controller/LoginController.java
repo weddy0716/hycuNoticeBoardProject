@@ -35,12 +35,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping("/login/userlogin.act")
 	public String userLogin(HttpServletRequest request , LoginMgt loginmgt , Model model , @RequestHeader(value = "X-Forwarded-For", defaultValue = "") String ipAddress) {
-		log.info("###PSH loginmgt : {}" , loginmgt);
-		
-		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
-		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
-		log.info("###PSH ipAddress : {}" , ipAddress);
-		
+
 		try {
             InetAddress localhost = InetAddress.getLocalHost();
             loginmgt.setLastLoginIp(localhost.getHostAddress());
@@ -48,9 +43,11 @@ public class LoginController {
             e.printStackTrace();
         }
 		
-		loginService.userLogin(request , loginmgt);
+		LoginMgt resultLogin =  loginService.userLogin(request , loginmgt);
 		
-		return "1";
+		String result = resultLogin == null ? "0" : "1";
+		
+		return result;
 	}
 	
 	@RequestMapping("/login/logout.act")

@@ -34,7 +34,6 @@ public class LoginService {
 		String requestIP = loginmgt.getLastLoginIp();
 		loginmgt.setPassword(PasswordCrypto.SHA256(password));
 		Optional<LoginMgt> loginIdInfo = Optional.ofNullable(loginRepository.loginCheckerId(loginmgt)); //로그인ID체크
-		log.info("###PSH loginIdInfo Check : {}" , loginIdInfo);
 		
 		if(loginIdInfo.isEmpty()) {
 			throw new NoticeBoardException("로그인정보가 없습니다.[0]", HttpStatus.INTERNAL_SERVER_ERROR , "COMM_0001");
@@ -50,23 +49,15 @@ public class LoginService {
 				throw new NoticeBoardException("비밀번호오류횟수를 초과했습니다.비밀번호찾기페이지로 이동합니다." ,  HttpStatus.INTERNAL_SERVER_ERROR , "COMM_0002");
 			}
 			loginIdInfo.get().setPassErrorCnt(String.valueOf(passErrorCnt+1)).setLastLoginIp(requestIP);
-			log.info("###PSH loginIdInfo result ### : {}" , loginIdInfo.get());
 			int result = loginRepository.updateFailLoginInfo(loginIdInfo.get());
-			log.info("###PSH updateFailLoginInfo result : {}" , result);
-			
 			throw new NoticeBoardException("비밀번호가 틀립니다.오류횟수["+(passErrorCnt+1)+"]" , HttpStatus.INTERNAL_SERVER_ERROR , "COMM_0003");
 		}else {
 			SessionManager.removeSession(request);
-			
 			Member member = new Member();
 			member.setUserid(loginmgt.getUserid()).setPassword(loginmgt.getPassword());
 			Optional<Member> userinfo = Optional.ofNullable(memberRepository.findByUserInfo(member));
-			
-			//loginmgt.setLastLoginIp(passwordErrorCntStr);
-			
 			int updateLoginTime = loginRepository.updateLoginInfo(loginmgt);
 			//로그인테이블에 로그인 시간 저장진행
-			
 			HashMap<String,String> loginMap = new HashMap<String,String>();
 			loginMap.put("userid"		, userinfo.get().getUserid());
 			loginMap.put("email"		, userinfo.get().getEmail());

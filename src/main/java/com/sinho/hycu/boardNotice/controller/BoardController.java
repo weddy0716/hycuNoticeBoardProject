@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sinho.hycu.boardNotice.service.BoardListService;
 import com.sinho.hycu.boardNotice.vo.BoardListMgt;
+import com.sinho.hycu.boardNotice.vo.Member;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
+import com.sinho.hycu.framework.session.SessionManager;
 
 import lombok.extern.slf4j.Slf4j;
 

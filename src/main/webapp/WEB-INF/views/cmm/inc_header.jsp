@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page import="java.util.Calendar"%>
+<%@ page import="com.sinho.hycu.framework.session.SessionManager"%>
 <%
 	Calendar calendar = Calendar.getInstance();
 	//calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE) / 10);
@@ -9,6 +10,7 @@
 	//calendar.set(Calendar.MILLISECOND, 0);
 	String RESOURCE_DATE_VERSION = calendar.getTimeInMillis()+"";
 	System.out.println("###RESOURCE_DATE_VERSION : " + RESOURCE_DATE_VERSION);
+	
 %>
 
 <script type="text/javascript" src="/resource/js/jquery/jquery-3.6.1.min.js?<%=RESOURCE_DATE_VERSION%>"></script>
@@ -16,30 +18,12 @@
 <script type="text/javascript" src="/resource/js/cmm/com.js?<%=RESOURCE_DATE_VERSION%>"></script>
 <script type="text/javascript" src="/resource/js/cmm/util.js?<%=RESOURCE_DATE_VERSION%>"></script>
 <script type="text/javascript">
+	var loginFlag = "${loginFlag}"
 	
-	/* 로그인시 LoginController에서 저장한 세션데이터 */
-	sessionStorage.setItem("loginId"	, "${sessionScope.loginId}");		// 아이디
-	sessionStorage.setItem("loginName"	, "${sessionScope.loginName}");		// 이름
-	sessionStorage.setItem("loginNo"	, "${sessionScope.loginNo}");		// 회원번호
-	sessionStorage.setItem("loginGrade"	, "${sessionScope.loginGrade}");	// 등급
-	sessionStorage.setItem("loginTeam"	, "${sessionScope.loginTeam}"); 	// 소속
-	sessionStorage.setItem("loginYN"	, "${sessionScope.loginYN}");		// 로그인여부(Y.로그인/ N.비로그인)
-	
-	
-	function isFirstInit() {
-		if(!JUtilLogin.isLogin()) { // 로그인 여부 (Y.로그인 / N.비로그인)
-			// console.log("비로그인");
-			
-			// 저장한 세션데이터 삭제
-			sessionStorage.clear();
-			
-			// 비로그인일 때 뒤로가기 방지
-			JUtilPage.noBack();
-		}
+	if(!loginFlag){
+		//alert("로그인이 필요한 서비스입니다. 로그인 페이지로 이동합니다.");
+		//location.href = "/";
 	}
-	
-	isFirstInit();
-	
 </script>
 <link rel="stylesheet" href="/resource/css/bootstrap.min.css">
 <style type="text/css" >
