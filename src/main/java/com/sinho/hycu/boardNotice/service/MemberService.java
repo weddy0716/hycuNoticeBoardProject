@@ -2,6 +2,8 @@ package com.sinho.hycu.boardNotice.service;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,7 @@ import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
 import com.sinho.hycu.common.util.PasswordCrypto;
 import com.sinho.hycu.common.util.RandomVerifyCodeUtil;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
+import com.sinho.hycu.framework.session.SessionManager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,6 +77,18 @@ public class MemberService  {
 			result = loginRepository.updateLoginPasswordInfo(loginMgt);
 		}
 		return result;
+	}
+	
+	public int updateMemberInfo(HttpServletRequest request, Member member) {
+		Optional<Member> searchEmailResult = Optional.ofNullable(memberRepository.findByEmail(member));
+		String userinfoEmail = String.valueOf(SessionManager.getSession(request, "email"));
+		if(!userinfoEmail.equals(member.getEmail())) { //입력한 이메일과 사용자 세션의 이메일이 다를떄만 체크한다.
+			searchEmailResult.ifPresent(m -> {
+				throw new NoticeBoardException("등록된 이메일이 있습니다.다른이메일을 입력하여 주십시오.", HttpStatus.INTERNAL_SERVER_ERROR , "MEMB_003");
+			});
+		}
+		int memberUpdateResult = memberRepository.updateMemberInfo(member);
+		return memberUpdateResult;
 	}
 	
 	/**

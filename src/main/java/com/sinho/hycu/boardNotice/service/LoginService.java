@@ -68,10 +68,11 @@ public class LoginService {
 			//로그인테이블에 로그인 시간 저장진행
 			
 			HashMap<String,String> loginMap = new HashMap<String,String>();
-			loginMap.put("userid"	, userinfo.get().getUserid());
-			loginMap.put("email"	, userinfo.get().getEmail());
+			loginMap.put("userid"		, userinfo.get().getUserid());
+			loginMap.put("email"		, userinfo.get().getEmail());
 			loginMap.put("fullName"		, userinfo.get().getFullName());
 			loginMap.put("lastLoginDt"	, loginIdPwInfo.get().getLastLoginDt());
+			loginMap.put("seq"			, String.valueOf(member.getSeq()));
 			SessionManager.setSession(request, loginMap);
 			SessionManager.setSession(request, "userinfo" , userinfo.get());
 		}

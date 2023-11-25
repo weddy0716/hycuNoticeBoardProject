@@ -50,6 +50,7 @@
 	<!-- 사용자정보가져오기 -->
 	<select id="findByUserInfo" parameterType="Member" resultType="Member">
 		select 
+			seq,
 			userid,
 			email,
 			full_name,
@@ -78,7 +79,7 @@
 		select 
 			userid,
 			send_email
-		FROM MemberVerifyMgt
+		FROM memberverifymgt
 		WHERE userid = #{userid}
 		AND verify_code = #{verifyCode}
 		AND send_email = #{sendEmail}

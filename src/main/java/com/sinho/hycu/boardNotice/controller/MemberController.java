@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sinho.hycu.boardNotice.service.LoginService;
 import com.sinho.hycu.boardNotice.service.MemberService;
 import com.sinho.hycu.boardNotice.vo.Member;
 import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
@@ -90,7 +91,8 @@ public class MemberController {
 	@RequestMapping(value={"/" , "/index"})
     private ModelAndView main(HttpServletRequest request, Model model) {
 		ModelAndView mv = new ModelAndView();
-		// 세션에 저장된 id가 없으므로 로그인 화면으로 이동
+		// 해당페이지로오면 무조건 로그아웃시킨다.
+		SessionManager.removeSession(request);
 		mv.setViewName("/login/loginForm.view");
 		return mv;
     }
@@ -118,6 +120,14 @@ public class MemberController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/member/updateMemberInfo.act")
+	public String updateMemberInfo(HttpServletRequest request, Member member , Model model) {
+		int result = memberService.updateMemberInfo(request , member);
+		return String.valueOf(result);
+	}
+
+	
 	/**
 	 * 에러처리진행
 	 * @param ex
@@ -127,6 +137,11 @@ public class MemberController {
     @ResponseBody
     public ResponseEntity<String> handleCustomException(NoticeBoardException ex) {
         // CustomException이 발생했을 때 처리하는 메서드
-        return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+		if(!ex.getErrorCode().equals("")) {
+			return ResponseEntity.status(ex.getStatus()).body(ex.getMessage() + "||" +ex.getErrorCode());
+		}else {
+			return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+		}
+        
     }
 }

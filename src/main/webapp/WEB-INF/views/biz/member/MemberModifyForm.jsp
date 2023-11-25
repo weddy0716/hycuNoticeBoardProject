@@ -59,7 +59,20 @@
 			param.userid = $(dom).find("#userid").val();
 			param.email = $(dom).find("#email").val();
 			param.fullName = $(dom).find("#fullName").val();
+			param.seq = "${userinfo.seq}";
 			console.log("##param : " + JSON.stringify(param));
+			ajaxAction(param, "text", "/member/updateMemberInfo.act", function(result){
+				if(result == "1") {
+					alert("회원정보가 수정 되었습니다..로그인페이지로 이동합니다.");
+					location.href = "/";
+				} else {
+					alert(result);
+				}
+			},function(errorCode , errorMsg){
+				var customErrorObj = errorMsg.split("||");
+				alert("errorCode:" + customErrorObj[1] + " || " + customErrorObj[0]);
+			});
+			
 		});
 		
 	});

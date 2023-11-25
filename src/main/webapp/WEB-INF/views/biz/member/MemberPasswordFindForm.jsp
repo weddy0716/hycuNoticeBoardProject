@@ -87,6 +87,7 @@
 							   		console.log('##박신호 EMAIL SUCCESS!', response.status, response.text);
 							   		$(dom).find("#verifyCodeGroup").show();
 							   		$(dom).find("#VerifyCodeCheck").show();
+							   		alert("이메일발송에 성공하였습니다. \n 이메일에서 인증코드를 확인후에 인증코드를 입력하여 주십시오.");
 							   }, function(error) {
 							   	console.log('##박신호 EMAIL FAILED...', error);
 							   });
