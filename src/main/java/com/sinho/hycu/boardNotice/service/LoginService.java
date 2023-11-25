@@ -61,7 +61,12 @@ public class LoginService {
 			Member member = new Member();
 			member.setUserid(loginmgt.getUserid()).setPassword(loginmgt.getPassword());
 			Optional<Member> userinfo = Optional.ofNullable(memberRepository.findByUserInfo(member));
-
+			
+			//loginmgt.setLastLoginIp(passwordErrorCntStr);
+			
+			int updateLoginTime = loginRepository.updateLoginInfo(loginmgt);
+			//로그인테이블에 로그인 시간 저장진행
+			
 			HashMap<String,String> loginMap = new HashMap<String,String>();
 			loginMap.put("userid"	, userinfo.get().getUserid());
 			loginMap.put("email"	, userinfo.get().getEmail());
