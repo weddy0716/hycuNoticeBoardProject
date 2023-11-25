@@ -65,7 +65,14 @@ public class MemberService  {
 	public int updateMemberPasswordReset(Member member) {
 		String password = member.getPassword();
 		member.setPassword(PasswordCrypto.SHA256(password));
-		int result = memberRepository.updateMemberPasswordReset(member);
+		int memberResult = memberRepository.updateMemberPasswordReset(member);
+		int result = 0; //로그인정보까지 완료후 1 리턴
+		if(memberResult == 1) {
+			LoginMgt loginMgt = new LoginMgt();
+			log.debug("###PSH member.getUserid() : {}" , member.getUserid());
+			loginMgt.setUserid(member.getUserid()).setPassword(PasswordCrypto.SHA256(password));
+			result = loginRepository.updateLoginPasswordInfo(loginMgt);
+		}
 		return result;
 	}
 	

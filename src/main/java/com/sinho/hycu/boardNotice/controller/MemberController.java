@@ -14,6 +14,7 @@ import com.sinho.hycu.boardNotice.service.MemberService;
 import com.sinho.hycu.boardNotice.vo.Member;
 import com.sinho.hycu.boardNotice.vo.MemberVerifyMgt;
 import com.sinho.hycu.framework.exception.NoticeBoardException;
+import com.sinho.hycu.framework.session.SessionManager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -105,6 +106,16 @@ public class MemberController {
 		memberService.memberJoin(member);
 		log.info("###ModelAndView getID : " + member.getSeq());
 		return member.getSeq()+"";
+	}
+	
+	@RequestMapping(value={"/member/updateMemberForm"})
+	public ModelAndView memberUpdateForm(HttpServletRequest request, Model model) {
+		ModelAndView mv = new ModelAndView();
+		log.info("##PSH join/memberJoin Call");
+		Member userinfo = (Member) SessionManager.getSession(request, "userInfo");
+		mv.setViewName("/member/MemberModifyForm.tiles");
+		mv.addObject("userinfo", userinfo);
+		return mv;
 	}
 	
 	/**

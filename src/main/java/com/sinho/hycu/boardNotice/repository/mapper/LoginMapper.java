@@ -11,4 +11,5 @@ public interface LoginMapper {
 	LoginMgt loginCheckerIdPw(LoginMgt loginmgt); //로그인
 	int updateFailLoginInfo(LoginMgt loginmgt); //로그인
 	int updateLoginInfo(LoginMgt loginmgt);   //로그인정보저장
+	int updateLoginPasswordInfo(LoginMgt loginmgt);   //로그인 비밀번호 변경
 }

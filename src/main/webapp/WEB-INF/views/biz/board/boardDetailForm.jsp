@@ -36,7 +36,7 @@
 
 	        <div class="btn-container">
 	        	<button type="button" class="btn btn-primary">수정하기</button>
-	            <button type="button" class="btn btn-danger">삭제하기</button>
+	        	<button type="button" class="btn btn-info">목록으로</button>
 	        </div>
         </form>
     </div>
@@ -46,6 +46,10 @@
 	documentReady("#boardDetailForm" , function(dom){
 		$(dom).find(".btn-primary").bind("click" , function(){
 			location.href = "/board/boardModifyForm?seq=" + "${detail.seq}";
+		});
+		
+		$(dom).find(".btn-info").bind("click" , function(){
+			location.href = "/board/boardlist";
 		});
 	});
 </script>

@@ -56,4 +56,11 @@ public class MybatisMapperLoginRepository implements LoginRepository {
 		int result = this.loginMapper.updateFailLoginInfo(loginmgt);
 		return result;
 	}
+	
+	@Override
+	public Integer updateLoginPasswordInfo(LoginMgt loginmgt) {
+		int result = this.loginMapper.updateLoginPasswordInfo(loginmgt);
+		return result;
+	}
+
 }

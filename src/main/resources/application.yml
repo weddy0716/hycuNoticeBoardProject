@@ -11,9 +11,10 @@ spring:
   
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/hycu2022107598?UTC&allowPublickeyRetrieval=true
-    username: sinho
-    password: 5669qneo!!
+    #jdbc-url: jdbc:mysql://localhost:3306/hycu2022107598?UTC&allowPublickeyRetrieval=true
+    jdbc-url: jdbc:mysql://dev.danbplus.com:53306/hycu2022107598?UTC&allowPublickeyRetrieval=true  # 테스트 DB
+    username: root
+    password: Danb1235!!
     maximum-pool-size: 5
     max-lifetime: 1800000
     idle-timeout: 180000

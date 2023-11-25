@@ -9,13 +9,15 @@
 			subject,
 			contents,
 			password,
-			create_dt
+			create_dt,
+			full_name
 		) VALUES(
 			#{userid},
 			#{subject},
 			#{contents},
 			#{password},
-			now()
+			now(),
+			#{fullName}
 		)
 	</insert>
 	
@@ -27,8 +29,9 @@
 			subject,
 			contents,
 			create_dt,
-			update_dt
-		 FROM boardList
+			update_dt,
+			full_name
+		 FROM boardlist
 		 WHERE delete_flag IS NULL
 		 ORDER BY seq DESC
 	</select>
@@ -41,15 +44,16 @@
 			subject,
 			contents,
 			create_dt,
-			update_dt
-		 FROM boardList
+			update_dt,
+			full_name
+		 FROM boardlist
 		 WHERE seq = #{seq}
 	</select>
 	
 	<!-- 게시글 업데이트 -->
 	<update id="UpdateNoticeBoardDetail" parameterType="BoardListMgt">
 		UPDATE
-			boardList
+			boardlist
 		SET
 		    subject = #{subject},
 			contents = #{contents},
@@ -60,7 +64,7 @@
 	<!-- 게시글 삭제처리(화면에만 미노출) -->
 	<update id="DeleteNoticeBoardList" parameterType="BoardListMgt">
 		UPDATE
-			boardList
+			boardlist
 		SET
 		    delete_flag = 'Y'
 		 WHERE seq = #{seq}

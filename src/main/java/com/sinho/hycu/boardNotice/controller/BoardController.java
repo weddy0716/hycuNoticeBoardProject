@@ -39,7 +39,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardDetailForm")
-	public ModelAndView boardDetailForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+	public ModelAndView boardDetailForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
 		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
@@ -51,7 +51,7 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping("/board/boardInsert.act")
-	public String boardInsert(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
+	public String boardInsert(HttpServletRequest request , BoardListMgt boardListMgt , Model model) throws Exception {
 		log.info("###PSH boardListMgt : {}" , boardListMgt);
 		int result = boardListService.insertNoticeBoardList(request, boardListMgt);
 		return String.valueOf(result);
@@ -59,7 +59,7 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping("/board/boardDetailUpdate.act")
-	public String boardDetailUpdate(HttpServletRequest request , BoardListMgt boardListMgt , Model model) {
+	public String boardDetailUpdate(HttpServletRequest request , BoardListMgt boardListMgt , Model model) throws Exception {
 		log.info("###PSH boardListMgt : {}" , boardListMgt);
 		int result = boardListService.UpdateNoticeBoardDetail(boardListMgt);
 		return String.valueOf(result);
@@ -74,7 +74,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardlist")
-	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+	public ModelAndView boardlistForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/board/boardlistForm.tiles");
 		List<BoardListMgt> list = boardListService.selectNoticeBoardList();
@@ -84,7 +84,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardModifyForm")
-	public ModelAndView boardModifyForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) {
+	public ModelAndView boardModifyForm(HttpServletRequest request, BoardListMgt boardMgt ,  Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		log.info("###PSH getRemoteHost : {}" , request.getRemoteHost());
 		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());

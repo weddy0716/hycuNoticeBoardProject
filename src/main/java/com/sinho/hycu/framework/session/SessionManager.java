@@ -52,6 +52,11 @@ public class SessionManager implements HttpSessionListener {
 		}
 	}
 	
+	public static void setSession(HttpServletRequest request, String key , Object object) {
+		session = request.getSession();
+		session.setAttribute(key, object);
+	}
+	
 	public static void removeSession(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if(session != null) { // 세션정보가 존재할 경우

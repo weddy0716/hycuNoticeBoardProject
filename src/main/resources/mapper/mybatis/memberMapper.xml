@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sinho.hycu.boardNotice.repository.mapper.MemberMapper">
 	<insert id="memberJoin" useGeneratedKeys="true" keyProperty="seq" >
-		insert into MEMBER(
+		insert into member(
 			userid,
 		    password,
 		    email,
@@ -25,7 +25,7 @@
 	<select id="findByUserID" parameterType="Member" resultType="Member">
 		select 
 			userid
-		FROM MEMBER
+		FROM member
 		WHERE userid = #{userid}
 	</select>
 	
@@ -33,7 +33,7 @@
 	<select id="findByEmail" parameterType="Member" resultType="Member">
 		select 
 			email
-		FROM MEMBER
+		FROM member
 		WHERE email = #{email}
 	</select>
 	
@@ -42,7 +42,7 @@
 		select 
 			userid,
 			email
-		FROM MEMBER
+		FROM member
 		WHERE userid = #{userid}
 		AND email = #{email}
 	</select>
@@ -54,7 +54,7 @@
 			email,
 			full_name,
 			update_date
-		FROM MEMBER
+		FROM member
 		WHERE userid = #{userid}
 		AND password = #{password}
 	</select>
@@ -87,12 +87,23 @@
 	<!-- 사용자 비밀번호 재설정 -->
 	<update id="updateMemberPasswordReset" parameterType="Member" >
 		UPDATE 
-			MEMBER
+			member
 		SET
 			password = #{password},
 			update_date = now(),
 			pass_error_cnt = 0
 		WHERE userid = #{userid}
 		AND   email = #{email}
+	</update>
+	
+	<!-- 사용자 정보 변경 -->
+	<update id="updateMemberInfo" parameterType="Member" >
+		UPDATE 
+			member
+		SET
+			full_name = #{fullName},
+			update_date = now(),
+			email = #{email}
+		WHERE userid = #{userid}
 	</update>
 </mapper>

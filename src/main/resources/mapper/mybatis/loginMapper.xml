@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sinho.hycu.boardNotice.repository.mapper.LoginMapper">
 	<insert id="loginFirstInsert" parameterType="LoginMgt" >
-		insert into LOGINMGT(
+		insert into loginmgt(
 			userid,
 		    password
 		) values (
@@ -18,7 +18,7 @@
 		select 
 			userid,
 			pass_error_cnt
-		FROM LOGINMGT
+		FROM loginmgt
 		WHERE userid = #{userid}
 	</select>
 	
@@ -26,7 +26,7 @@
 	<select id="loginCheckerIdPw" parameterType="LoginMgt" resultType="LoginMgt">
 		select 
 			userid
-		FROM LOGINMGT
+		FROM loginmgt
 		WHERE userid = #{userid}
 		AND password = #{password}
 	</select>
@@ -34,7 +34,7 @@
 	<!-- 로그인 정보 업데이트-->
 	<update id="updateLoginInfo" parameterType="LoginMgt">
 		UPDATE 
-			LOGINMGT
+			loginmgt
 		SET 
 			last_login_dt = now(),
 			pass_error_cnt = 0,
@@ -47,10 +47,21 @@
 	<!-- 로그인 실패 정보 업데이트-->
 	<update id="updateFailLoginInfo" parameterType="LoginMgt">
 		UPDATE 
-			LOGINMGT
+			loginmgt
 		SET 
 			last_fail_login_dt = now(),
 			pass_error_cnt = #{passErrorCnt}
+		WHERE 
+			userid = #{userid}
+	</update>
+	
+	<!-- 로그인 비밀번호 정보 업데이트-->
+	<update id="updateLoginPasswordInfo" parameterType="LoginMgt">
+		UPDATE 
+			loginmgt
+		SET 
+			password = #{password},
+			pass_error_cnt = 0
 		WHERE 
 			userid = #{userid}
 	</update>

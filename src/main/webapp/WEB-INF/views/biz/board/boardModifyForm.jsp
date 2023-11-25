@@ -36,7 +36,7 @@
 
             <div class="form-group">
                 <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" name="author" value="${detail.userid}" required readonly>
+                <input type="text" class="form-control" id="author" name="author" value="${detail.fullName}" required readonly>
             </div>
 
 	        <div class="btn-container">

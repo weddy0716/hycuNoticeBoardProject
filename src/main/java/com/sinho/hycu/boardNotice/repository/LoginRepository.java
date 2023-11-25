@@ -8,4 +8,6 @@ public interface LoginRepository {
 	LoginMgt loginCheckerIdPw(LoginMgt loginmgt); //로그인 시도
 	Integer  updateFailLoginInfo(LoginMgt loginmgt); //로그인
 	Integer  updateLoginInfo(LoginMgt loginmgt);   //로그인정보저장
+	Integer updateLoginPasswordInfo(LoginMgt loginmgt);   //로그인 비밀번호 변경
+
 }

@@ -68,7 +68,7 @@ public class LoginService {
 			loginMap.put("fullName"		, userinfo.get().getFullName());
 			loginMap.put("lastLoginDt"	, loginIdPwInfo.get().getLastLoginDt());
 			SessionManager.setSession(request, loginMap);
-			
+			SessionManager.setSession(request, "userinfo" , userinfo.get());
 		}
 		log.info("###sessionManager Login : {}" , SessionManager.getSession(request, "userid"));
 		

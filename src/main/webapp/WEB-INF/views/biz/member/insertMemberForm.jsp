@@ -19,6 +19,7 @@
                                         <input class="form-control" id="fullName" type="text" placeholder="홍길동" data-filter=":kor"/>
                                         <label for="fullName">이름</label>
                                     </div>
+                                    
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="password" type="password" placeholder="" maxlength="20"/>
                                         <label for="password">비밀번호</label>

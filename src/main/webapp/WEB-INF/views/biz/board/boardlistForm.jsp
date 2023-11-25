@@ -13,12 +13,12 @@
 
 <div class="container-fluid px-4" id="boardListForm">
 	<div class="container mt-5">
-        <h1 class="text-center mb-4">게시판 목록</h1>
+        <h1 class="text-center mb-4">자유게시판</h1>
         <ul class="list-group">
         	<c:forEach var="item" items="${boardlist}">
         		<li class="list-group-item" data-seq="${item.seq}" >
 	                <h5 class="mb-1" id="detailContents">${item.subject}</h5>
-	                <small>작성자: ${item.userid} | 작성일: ${item.createDt}</small>
+	                <small>작성자: ${item.fullName} | 작성일: ${item.createDt}</small>
 	            </li>
         	</c:forEach>
         </ul>
