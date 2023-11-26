@@ -33,17 +33,26 @@
                 <label for="postContent">내용</label>
                 <p class="post-content">${detail.contents}</p>
             </div>
-
-	        <div class="btn-container">
-	        	<button type="button" class="btn btn-primary">수정하기</button>
-	        	<button type="button" class="btn btn-info">목록으로</button>
-	        </div>
+			<c:choose>
+				<c:when test="${modifyUseYN eq 'Y'}">
+					<div class="btn-container">
+			        	<button type="button" class="btn btn-primary">수정하기</button>
+			        	<button type="button" class="btn btn-info">목록으로</button>
+			        </div>	
+				</c:when>
+				<c:otherwise>
+					<div class="btn-container">
+			        	<button type="button" class="btn btn-info">목록으로</button>
+			        </div>
+				</c:otherwise>
+			</c:choose>
         </form>
     </div>
 </div>
    
 <script type="text/javascript">
 	documentReady("#boardDetailForm" , function(dom){
+		console.log("###PSH modifyUseYN : " + "${modifyUseYN}")
 		$(dom).find(".btn-primary").bind("click" , function(){
 			location.href = "/board/boardModifyForm?seq=" + "${detail.seq}";
 		});

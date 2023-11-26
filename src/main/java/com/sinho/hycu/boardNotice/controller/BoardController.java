@@ -47,7 +47,10 @@ public class BoardController {
 		log.info("###PSH getRemoteAddr : {}" , request.getRemoteAddr());
 		mv.setViewName("/board/boardDetailForm.tiles");
 		BoardListMgt boardListDetail = boardListService.selectNoticeBoardDetail(boardMgt);
+		Member userinfo = (Member)SessionManager.getSession(request, "userinfo");
+		String modifyUseYN = userinfo.getUserid().equals(boardListDetail.getUserid()) ? "Y" : "N";
 		mv.addObject("detail", boardListDetail);
+		mv.addObject("modifyUseYN", modifyUseYN);
 		return mv;
 	}
 	
