@@ -34,7 +34,7 @@ public class MemberController {
 	public MemberController( MemberService memberService )
 	{
 		this.memberService = memberService;
-		log.info("###ModelAndView JspViewController memberService : {} " , memberService.hashCode());
+		log.info("###MemberController memberService : {} " , memberService.hashCode());
 	}
 	
 	@RequestMapping(value={"/member/insertMemberForm"})
